@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-4">
+      <h3 class="text-center mb-4">Add & Remove item from List</h3>
+      <ul class="list-group">
+        <li *ngFor="let name of games; let i = index;" class="list-group-item d-flex justify-content-between align-items-center">
+          <span>{{name}}</span>
+          <button class="btn btn-danger" (click)="deleteGame(i)">
+              Delete
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <form (ngSubmit)="addGame(gameForm)" #gameForm="ngForm">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Enter New Game" name="newGame" #newGame="ngModel"
+            [(ngModel)]="newGameName" autocomplete="off" required>
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-primary" [disabled]="gameForm.invalid">
+              Add New
+            </button>
+          </div>
+        </div>
+        <p class="text-danger" *ngIf="newGame.dirty && newGame.invalid">
+          Please enter Game Name...!!!
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
